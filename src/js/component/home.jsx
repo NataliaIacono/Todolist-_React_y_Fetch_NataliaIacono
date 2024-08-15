@@ -84,6 +84,7 @@ const Home = () => {
 
     useEffect(() => {
         crearUser();
+        obtnerArrayApi();
     }, []);
 
     const subirTarea = async (tarea) => {
@@ -105,6 +106,18 @@ const Home = () => {
 
             const data = await response.json();
             console.log('Tarea subida:', data);
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    };
+
+    const obtnerArrayApi = async () => {
+        try {
+            // Si el usuario no existe, lo creamos
+            const response = await fetch('https://playground.4geeks.com/todo/users/Natalia');
+
+            const data = await response.json();
+            console.log(data);
         } catch (error) {
             console.log('Error:', error);
         }

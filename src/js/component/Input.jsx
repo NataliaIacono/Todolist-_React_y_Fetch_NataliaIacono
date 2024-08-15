@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = ({ tarea, setTarea, lista, setLista, subirTarea }) => {
+const Input = ({ tarea, setTarea, lista, setLista }) => {
     //const [tarea, setTarea] = useState('');
 
     const agregarTarea = async (e) => {
@@ -42,7 +42,7 @@ const Input = ({ tarea, setTarea, lista, setLista, subirTarea }) => {
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                         if (tarea.trim() !== '') {
-                            subirTarea(tarea);
+                            agregarTarea(tarea);
                             setTarea('');
                         }
                     }
