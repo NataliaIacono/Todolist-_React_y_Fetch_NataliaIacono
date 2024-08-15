@@ -6,8 +6,6 @@ const ListaDeTareas = ({ lista, setLista }) => {
     // setLista([...lista, tarea]);
 
     const eliminarTarea = (index) => {
-        console.log(index);
-
         const nuevaLista = lista.filter((_, i) => i !== index);
         setLista(nuevaLista);
     };
@@ -15,10 +13,10 @@ const ListaDeTareas = ({ lista, setLista }) => {
     return (
         <div>
             <ul>
-                {lista.map((item, index) => (
+                {lista.map((tarea, index) => (
                     <li key={index}>
                         {' '}
-                        {item}
+                        {tarea.label}
                         <button
                             className="basura"
                             onClick={() => {
