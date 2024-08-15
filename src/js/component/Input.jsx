@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Input = ({ tarea, setTarea, lista, setLista }) => {
+const Input = ({ tarea, setTarea, lista, setLista, subirTarea }) => {
     //const [tarea, setTarea] = useState('');
 
-    const agregarTarea = async (e) => {
+    /* const agregarTarea = async (e) => {
         if (e.key === 'Enter' && tarea.trim() !== '') {
             try {
                 const response = await fetch('https://playground.4geeks.com/todo/users/Natalia', {
@@ -29,7 +29,7 @@ const Input = ({ tarea, setTarea, lista, setLista }) => {
                 console.error('Error al agregar la tarea:', error);
             }
         }
-    };
+    };*/
 
     return (
         <div>
@@ -42,7 +42,8 @@ const Input = ({ tarea, setTarea, lista, setLista }) => {
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                         if (tarea.trim() !== '') {
-                            agregarTarea(tarea);
+                            subirTarea(tarea);
+                            //agregarTarea(tarea);
                             setTarea('');
                         }
                     }

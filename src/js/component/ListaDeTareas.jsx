@@ -10,6 +10,8 @@ const ListaDeTareas = ({ lista, setLista }) => {
         setLista(nuevaLista);
     };
 
+    console.log(lista);
+
     return (
         <div>
             <ul>

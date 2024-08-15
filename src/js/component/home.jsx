@@ -9,31 +9,6 @@ const Home = () => {
     const [lista, setLista] = useState([]);
     const [tarea, setTarea] = useState('');
 
-    /* const crearUser = async () => {
-        try {
-            if (lista.length > 0) {
-                return;
-            }
-            //condicion para no entrar en bucle
-            const response = await fetch('https://playground.4geeks.com/todo/users/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(),
-            });
-            // fetch(consulta) recibe como argumento la URL donde hacemos la peticion para la obtencion de datos/asincrono! promesa pendiente hasta el .then
-            const data = await response.json({ user_name: 'Natalia' });
-            //convertimos la respuesta en un json (o texto o lo que sea)
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        crearUser();
-    }, []);*/
-
     const verificarUsuario = async () => {
         try {
             // Verificamos si el usuario ya existe
@@ -109,6 +84,11 @@ const Home = () => {
         } catch (error) {
             console.log('Error:', error);
         }
+
+        setLista([...lista, tarea]);
+        console.log(lista);
+
+        setTarea('');
     };
 
     const obtnerArrayApi = async () => {
