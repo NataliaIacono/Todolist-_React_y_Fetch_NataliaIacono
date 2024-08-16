@@ -38,12 +38,11 @@ const Home = () => {
             }
 
             // Si el usuario no existe, lo creamos
-            const response = await fetch('https://playground.4geeks.com/todo/users/', {
+            const response = await fetch('https://playground.4geeks.com/todo/users/Natalia', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ user_name: 'Natalia' }), // Enviar el nombre de usuario correcto
             });
 
             if (!response.ok) {
@@ -56,11 +55,6 @@ const Home = () => {
             console.log('Error:', error);
         }
     };
-
-    useEffect(() => {
-        crearUser();
-        obtnerArrayApi();
-    }, []);
 
     const subirTarea = async (tarea) => {
         try {
@@ -97,11 +91,16 @@ const Home = () => {
             const response = await fetch('https://playground.4geeks.com/todo/users/Natalia');
 
             const data = await response.json();
-            console.log(data);
+            setLista(data.todos);
         } catch (error) {
             console.log('Error:', error);
         }
     };
+
+    useEffect(() => {
+        crearUser();
+        obtnerArrayApi();
+    }, []);
 
     return (
         <div className="text-center">

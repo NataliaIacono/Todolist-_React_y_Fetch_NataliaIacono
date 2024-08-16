@@ -9,25 +9,28 @@ const ListaDeTareas = ({ lista, setLista }) => {
         const nuevaLista = lista.filter((_, i) => i !== index);
         setLista(nuevaLista);
     };
-
     console.log(lista);
 
     return (
         <div>
             <ul>
-                {lista.map((tarea, index) => (
-                    <li key={index}>
-                        {' '}
-                        {tarea.label}
-                        <button
-                            className="basura"
-                            onClick={() => {
-                                eliminarTarea(index);
-                            }}>
-                            <i className="fa-regular fa-trash-can"></i>
-                        </button>
-                    </li>
-                ))}
+                {lista.map((tarea) => {
+                    console.log(tarea);
+
+                    return (
+                        <li key={id}>
+                            {' '}
+                            {tarea.label}
+                            <button
+                                className="basura"
+                                onClick={() => {
+                                    eliminarTarea(index);
+                                }}>
+                                <i className="fa-regular fa-trash-can"></i>
+                            </button>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
