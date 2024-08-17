@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Titulo from './Titulo';
 import Input from './Input';
 import ListaDeTareas from './ListaDeTareas';
-import Contador from './ContadorDeTareas';
+import Contador from './Contador';
 
 //create your first component
 const Home = () => {
@@ -75,12 +75,10 @@ const Home = () => {
 
             const data = await response.json();
             console.log('Tarea subida:', data);
+            setLista([...lista, data]);
         } catch (error) {
             console.log('Error:', error);
         }
-
-        setLista([...lista, tarea]);
-        console.log(lista);
 
         setTarea('');
     };
@@ -97,17 +95,36 @@ const Home = () => {
         }
     };
 
-    const eliminarTarea = async () => {
+    /*const eliminarTarea = async (id) => {
         try {
             const response = await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
-            const data = response.json;
+            const data = await response.text();
+
             setLista(data.todos);
+            console.log('ID de la tarea a eliminar:', id);
 
             console.log('tarea eliminada');
         } catch (error) {
             console.log('Error:', error);
+        }
+    };*/
+
+    const eliminarTarea = async (id) => {
+        try {
+            const respuesta = await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+                method: 'DELETE',
+            });
+
+            console.log(respuesta);
+            const data = await respuesta.text(); //string
+            setLista(data.todos);
+        } catch (error) {
+            console.error('Error al eliminar la tarea:', error);
         }
     };
 
@@ -122,6 +139,7 @@ const Home = () => {
             <Input tarea={tarea} setTarea={setTarea} subirTarea={subirTarea} />
             <ListaDeTareas lista={lista} eliminarTarea={eliminarTarea} />
             <Contador lista={lista} />
+            <button>Eliminar todo</button>
         </div>
     );
 };
