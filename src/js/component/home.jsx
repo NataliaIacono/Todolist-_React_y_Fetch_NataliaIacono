@@ -56,7 +56,7 @@ const Home = () => {
         }
     };
 
-    const subirTarea = async (tarea) => {
+    const subirTarea = async () => {
         try {
             const response = await fetch('https://playground.4geeks.com/todo/todos/Natalia', {
                 method: 'POST',
@@ -97,6 +97,20 @@ const Home = () => {
         }
     };
 
+    const eliminarTarea = async () => {
+        try {
+            const response = await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+                method: 'DELETE',
+            });
+            const data = response.json;
+            setLista(data.todos);
+
+            console.log('tarea eliminada');
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    };
+
     useEffect(() => {
         crearUser();
         obtnerArrayApi();
@@ -105,8 +119,8 @@ const Home = () => {
     return (
         <div className="text-center">
             <Titulo />
-            <Input tarea={tarea} setTarea={setTarea} setLista={setLista} lista={lista} subirTarea={subirTarea} />
-            <ListaDeTareas lista={lista} setLista={setLista} />
+            <Input tarea={tarea} setTarea={setTarea} subirTarea={subirTarea} />
+            <ListaDeTareas lista={lista} eliminarTarea={eliminarTarea} />
             <Contador lista={lista} />
         </div>
     );
