@@ -120,13 +120,63 @@ const Home = () => {
                 method: 'DELETE',
             });
 
-            console.log(respuesta);
-            const data = await respuesta.text(); //string
-            setLista(data.todos);
+            console.log(id);
+            const data = await respuesta.text(); // por que con .text funciona bien?
+            const newLista = lista.filter((item) => {
+                return item.id != id;
+            });
+
+            setLista(newLista);
+            console.log(typeof data);
         } catch (error) {
             console.error('Error al eliminar la tarea:', error);
         }
     };
+
+    const eliminarTodasLasTareas = async () => {
+        try {
+            const respuesta = await fetch('https://playground.4geeks.com/todo/users/Natalia', {
+                method: 'DELETE',
+            });
+
+            await respuesta.text(); // por que con .text funciona bien?
+
+            setLista([]);
+            await crearUser();
+        } catch (error) {
+            console.error('Error al eliminar la tarea:', error);
+        }
+    };
+
+    /* const editar = async (id) => {
+        try {
+            const respuesta = await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+                method: 'PUT',
+            });
+
+            console.log(respuesta);
+            const data = await respuesta.json(); // por que con .text funciona bien?
+            // falta algo
+        } catch (error) {
+            console.error('Error al eliminar la tarea:', error);
+        }
+    };*/
+
+    /*const editar = async (id, nuevaLabelTarea) => {
+        const response = await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                label: nuevaLabelTarea,
+                is_done: true,
+            }),
+        });
+        const data = await response.json();
+        setLista(
+            lista.map((item) => {
+                return id === item.id ? data: item
+            }),
+        );
+    };*/
 
     useEffect(() => {
         crearUser();
@@ -139,7 +189,12 @@ const Home = () => {
             <Input tarea={tarea} setTarea={setTarea} subirTarea={subirTarea} />
             <ListaDeTareas lista={lista} eliminarTarea={eliminarTarea} />
             <Contador lista={lista} />
-            <button>Eliminar todo</button>
+            <button
+                onClick={() => {
+                    eliminarTodasLasTareas();
+                }}>
+                Eliminar todo
+            </button>
         </div>
     );
 };

@@ -19,9 +19,9 @@ const ListaDeTareas = ({ lista = [], eliminarTarea }) => {
                             <button className="basura" onClick={() => eliminarTarea(tarea.id)}>
                                 <i className="fa-regular fa-trash-can"></i>
                             </button>
-                            <button className="actualizar" onClick={() => actualizar(tarea.id)}>
+                            {/*<button className="actualizar" onClick={() => editar(tarea.id)}>
                                 <i className="fa-regular fa-pen-to-square"></i>
-                            </button>
+                            </button>*/}
                         </li>
                     );
                 })}
